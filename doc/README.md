@@ -51,7 +51,7 @@ after they have BitHive coins and asking other nodes for running their programs.
 ### Developer:
 1.Less costs are required to maintain your servers
 
-2.You only need to input your commandfor a line to get online users all over the world
+2.You only need to input your command for a line to get online users all over the world
 
 3.Your AI will finish your work when you are sleeping in bed
 ### Advertiser:

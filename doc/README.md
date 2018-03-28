@@ -10,7 +10,7 @@ Introducing blockchain-based script control
 
 2.Users' privacy is monitored by trojans
 
-3.The script will stop running when your computer is shutdown
+3.The script will stop running when your computer shutdown
 
 ### Developer:
 1.Developer are blackmailed by malware

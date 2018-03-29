@@ -1,6 +1,6 @@
-### BitHive3
+### BitHive
 
-Introducing blockchain-based script control
+软件授权：  MIT
 
 变革传统应用程序
 

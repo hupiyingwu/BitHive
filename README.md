@@ -1,4 +1,7 @@
 ### BitHive
+* View English: [Page](https://hupiyingwu.github.io/doc/)
+
+* View English: [code](https://github.com/hupiyingwu/hupiyingwu.github.io/tree/master/doc)
 
 软件授权：  MIT
 

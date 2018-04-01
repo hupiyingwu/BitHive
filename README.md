@@ -1,5 +1,5 @@
-### BitHive
-* View English: [Page](https://hupiyingwu.github.io/doc/)
+﻿### BitHive
+* View English: [Page](https://hupiyingwu.github.io/download-English/)
 
 * View English: [code](https://github.com/hupiyingwu/hupiyingwu.github.io/tree/master/doc)
 

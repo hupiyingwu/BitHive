@@ -1,0 +1,195 @@
+/**
+ * html5 频道
+ */
+
+
+function addplayiframe(playurl,swidth,sheight)
+{
+	document.writeln('<iframe src="'+playurl+'" width="'+swidth+'" height="'+sheight+'" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" id="swfdiv" name="play_game" class="play_game"></iframe>');
+}
+
+
+$(function(){
+	$(".j_hover").hover(
+			function(){$(this).css("z-index","11").find(".smerweima").show()},
+			function(){$(this).css("z-index","10").find(".smerweima").hide()}
+	);
+
+})
+
+
+$(".j_hover").live('mouseover mouseout', function(){
+	  if (event.type == 'mouseover') {
+		 $(this).css("z-index","11").find(".smerweima").show();
+	  } else {
+		 $(this).css("z-index","10").find(".smerweima").hide();
+	  }
+});
+
+function playrestart(){
+	var e=$("#swfdiv").attr("src");
+	return $("#swfdiv").attr("src",e);
+
+}
+
+
+
+
+
+//获取屏幕高度
+function get_screen_height(){
+  if(window.self&&self.innerHeight) return self.innerHeight;
+  if(document.documentElement&&document.documentElement.clientHeight) return document.documentElement.clientHeight;
+  return document.body.clientHeight;
+}
+
+//获取屏幕宽度
+function get_screen_width(){
+  if(window.self&&self.innerWidth) return self.innerWidth;
+  if(document.documentElement&&document.documentElement.clientWidth) return document.documentElement.clientWidth;
+  return document.body.clientWidth;
+}
+
+//全屏
+function fullzoom(num){
+	if(num==1){//放大
+		var clientheight = get_screen_height()-40;
+		var thish = parseInt(document.getElementById("swfdiv").style.height.replace("px",""))+60;
+		var thisw = GetSize(0,thish,"w");
+		if(clientheight-thish>=0){
+			document.getElementById("swfdiv").style.height = thish+"px";
+			document.getElementById("swfdiv").style.width = thisw+"px";
+			player.playbox.style.height = thish+"px";
+			player.playbox.style.width = thisw+"px";
+			document.getElementById("swfdiv").style.marginTop = parseInt((clientheight - thish)/2)+"px";
+		}
+	}else{
+		var clientheight = get_screen_height()-40; 
+		var thish = parseInt(document.getElementById("swfdiv").style.height.replace("px",""))-60;
+		var thisw = GetSize(0,thish,"w");
+		if((thish*thisw)>67710){
+			document.getElementById("swfdiv").style.height = thish+"px";
+			document.getElementById("swfdiv").style.width = thisw+"px";
+			player.playbox.style.height = thish+"px";
+			player.playbox.style.width = thisw+"px";
+			document.getElementById("swfdiv").style.marginTop = parseInt((clientheight - thish)/2)+"px";
+		}
+	}
+}
+
+function GetSize(w, h, m){
+	var t;
+	if(m == "w"){
+		t = parseInt(_w * h/_h);
+		return t;
+	}else{
+		t = parseInt(w * _h/_w);
+		return t;
+	}
+}
+
+var player = {
+		playbox:null,
+		defaultsize:{"w":_w,"h":_h},
+		getboxsize:function(o){
+			if(!o)return {"w":0,"h":0};
+			return{"w":o.clientWidth,"h":o.clientHeight};
+		},
+		adjustboxsize:function(c,a){//原始宽比高数值大，则c的宽度+a，高度按原始比例增加
+			if(this.defaultsize.w>this.defaultsize.h){
+				return{"w":c.w+a,"h":Math.floor((c.w+a)*this.defaultsize.h/this.defaultsize.w),"m":0};
+			}
+			else{
+				return{"w":Math.floor((c.h+a)*this.defaultsize.w/this.defaultsize.h),"h":c.h+a,"m":0};
+			}
+		},
+		setboxsize:function(o,size){//设置o的宽高
+			o.style.width = size.w == "100%" ? size.w : size.w + "px";
+			o.style.height = (size.h == "100%" || size.h == "auto") ? size.h : size.h + "px";
+		},
+		zoom:function(p){
+			var a = 150*p,current=this.getboxsize(this.playbox),result=this.adjustboxsize(current,a);
+			if(result.h<_h){
+				result.m = Math.floor((_h-result.h)/2);
+			}else{
+				result.m = 0;
+			}
+			if(current.w*current.h < 60000 && p<0){current=null,result=null;return;}
+            
+			//alert(result.w);
+			if(result.w<980){
+		
+			viewbox(1,result);}
+			else if(result.w>=980){return false;}
+			this.setboxsize(this.playbox,result);
+		},
+		rennew:function(){
+		this.defaultsize.m=0;
+		viewbox(1,this.defaultsize);
+		}
+}
+
+function viewbox(m,s){
+	if(s.h){
+		s.h = parseInt(s.h);
+	}
+	
+	if(s.h>=_h)
+	{
+		document.getElementById("html5shipin").style.height=s.h+"px";
+	}else{
+		document.getElementById("html5shipin").style.height=_h+"px";
+	}
+	switch(m){
+		case 1 :
+			document.getElementById("swfdiv").style.marginTop=s.m+"px";
+			document.getElementById("swfdiv").style.width=s.w+"px";
+			document.getElementById("swfdiv").style.height=s.h+"px";
+			break;
+		default:break;
+	}
+}
+
+function callFull(num){
+	   var client_h = get_screen_height(); 
+	   var client_w = get_screen_width(); 
+	   	if(num==1){//全屏
+			$(".top_toolbar").hide();
+			$(".head").hide();
+			$(".location").hide();
+			$(".nygy_tit").hide();
+			$(".yxjs_box").hide();
+			$(".nygy_tit").hide();
+			$(".czzn").hide();
+			$(".nygy_tit").hide();
+			$(".yxzx_box").hide();
+			$(".show_pl").hide();
+			$(".retj").hide();
+			$(".show_bnt").hide();
+			$(".rightfix").show();
+			
+			
+	       // $(".h5p_main").css({"margin":0,"width":client_w,"height":client_h,"border-radius":0});
+	        $(".h5p_frame").css({"width":client_w,"height":client_h,"margin":0  });
+	       $(".play_game").css({"width":"100%","height":"100%","margin":0,"position":"fixed","left":0,"top":0});
+			//$("#h5p_body").css({"height":client_h,"overflow":"hidden","background":"#ddd"});  
+	    }else if(num==-1){
+			$(".top_toolbar").show();
+			$(".head").show();
+			$(".location").show();
+			$(".nygy_tit").show();
+			$(".yxjs_box").show();
+			$(".nygy_tit").show();
+			$(".czzn").show();
+			$(".nygy_tit").show();
+			$(".yxzx_box").show();
+			$(".show_pl").show();
+			$(".retj").show();
+              $(".rightfix").hide();
+			  $(".show_bnt").show();
+			$(".h5p_frame,.play_game").attr("style","");
+			//$(".play_game").css({"width":client_w,"height":client_h});
+			//$("#h5p_body").css({"height":"atuo","overflow":"","background":""});
+		} 
+}
+

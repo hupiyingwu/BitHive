@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: hupiyingwu.github.io
+Token: 4e2095ba367563be364341dbf10acaaa06b73176e2a1851458f23cb377f5a6b0
